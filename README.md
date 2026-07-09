@@ -101,7 +101,7 @@ Esse trabalho é a versão beta de um sistema que futuramente será implementado
 
 A aplicação busca facilitar o controle de clientes, produtos e pedidos, permitindo que o responsável pela empresa tenha uma visão mais organizada dos dados e consiga acompanhar as vendas realizadas de forma mais eficiente.
 
-O desenvolvimento foi realizado em dupla, com a participação de **Guilherme Alves**, contribuindo para a construção da aplicação, modelagem do banco de dados e implementação das funcionalidades do sistema.
+O desenvolvimento foi realizado em dupla, com a participação de **Guilherme Alves** na criação do sistema.
 
 ---
 
