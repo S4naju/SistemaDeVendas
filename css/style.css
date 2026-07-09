@@ -1,0 +1,211 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    background: #f5f6fa;
+}
+
+.menu {
+    width: 250px;
+    height: 100vh;
+    background: #161616;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.logo {
+    padding: 20px ;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.logo img{
+    width: 60%;
+}
+
+.logo p {
+    margin-top: 8px;
+    color: #bdbdbd;
+    font-size: 14px;
+}
+
+.menu nav {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.menu a{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #ddd;
+    padding: 15px 18px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    transition: 0.3s;
+    font-size: 15px;
+}
+
+.menu a .material-symbols-outlined{
+    width: 22px;
+    font-size: 22px;
+    text-align: center;
+    flex-shrink: 0;
+}   
+
+.menu a:hover {
+    background: #d62828;
+    color: white;
+    transform: translateX(5px);
+}
+
+.ativo {
+    background: #d62828;
+    color: white !important;
+}
+
+.ativo:hover{
+    background: #9e1e1e !important;
+    color: white;
+    transform: translateX(5px);
+}
+
+.conteudo {
+    margin-left: 250px;
+    width: 100%;
+    padding: 40px;
+}
+
+.card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.cardCard {
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.05);
+    transition: transform 0.3s;
+}
+
+.cardCard:hover {
+    transform: translateY(-5px);
+}
+
+.icone {
+    font-size: 45px !important;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 14px;
+}
+
+.cardCard h3 {
+    font-size: 20px;
+    color: #222;
+}
+
+.cardCard p {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.btn-atalho {
+    font-size: 13px;
+    color: #d62828;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.btn-atalho:hover {
+    text-decoration: underline;
+}
+
+.acessoRapido {
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.05);
+    margin-top: 30px;
+}
+
+.acessoRapido h2 {
+    font-size: 20px;
+    color: #222;
+    margin-bottom: 20px;
+}
+
+.botoes-container {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-rapido {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: white;
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-rapido .material-symbols-outlined {
+    font-size: 20px;
+}
+
+.btn-rapido:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.btn-cliente {
+    background: #1d3557;
+}
+.btn-cliente:hover {
+    background: #112237;
+}
+
+.btn-pedido {
+    background: #d62828;
+}
+.btn-pedido:hover {
+    background: #b91f1f;
+}
+
+.btn-produto {
+    background: #f5b041;
+}
+.btn-produto:hover {
+    background: #dca03a;
+}
+
+.btn-consulta {
+    background: #2b9348;
+}
+
+.btn-consulta:hover {
+    background: #1e6f33;
+}
