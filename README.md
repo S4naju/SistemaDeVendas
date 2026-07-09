@@ -95,6 +95,14 @@ O projeto contém scripts responsáveis pela criação e manipulação do banco 
 
 ---
 
+### Visualização do Site
+
+Para visualizar o sistema, você pode baixar este repositório e abrir o projeto localmente no seu computador.
+
+Também é possível acessar a versão online através do GitHub Pages: https://s4naju.github.io/SistemaDeVendas/
+
+---
+
 ### Observações
 
 Esse trabalho é a versão beta de um sistema que futuramente será implementado para a empresa Sense Belts, com o objetivo de auxiliar o gerenciamento das vendas e organização das informações da empresa.
