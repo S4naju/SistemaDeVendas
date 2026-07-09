@@ -1,7 +1,7 @@
 # Sistema de Controle de Vendas - Sense Belts
 
 ### Sobre o projeto:
-Este projeto foi desenvolvido como parte da disciplina **Banco de Dados** no IFRJ - Niterói, com o objetivo de aplicar na prática os conceitos de modelagem, criação e manipulação de um banco de dados relacional integrado a uma aplicação web.
+Este projeto foi desenvolvido como parte da disciplina **Banco de Dados I** no IFRJ - Niterói, com o objetivo de aplicar na prática os conceitos de modelagem, criação e manipulação de um banco de dados relacional integrado a uma aplicação web.
 
 O sistema foi desenvolvido para a empresa **Sense Belts**, com a finalidade de gerenciar informações relacionadas aos produtos, clientes e vendas realizadas. A aplicação permite realizar operações de cadastro, consulta, atualização e exclusão de dados, utilizando um banco de dados PostgreSQL hospedado no Supabase.
 
