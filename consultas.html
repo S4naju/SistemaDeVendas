@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sense Belts | Consultas</title>
+    <link rel="stylesheet" href="css/consultas.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
+    <script type="module">
+      import { createClient } from "https://esm.sh/@supabase/supabase-js";
+      const supabaseUrl = "https://qtvsxbynddktnqiubelh.supabase.co";
+      const supabaseKey = "sb_publishable_D4q0NGJ69Iy94luhTagZQA_lk1mWTQT";
+      window.supabase = createClient(supabaseUrl, supabaseKey);
+    </script>
+  </head>
+
+  <body>
+    <div class="menu">  
+      <div class="logo">
+        <img src="image/logo.png" alt="logo da sense belts" />
+        <p>Sistema de Vendas</p>
+      </div>
+      <nav>
+        <a href="index.html"><span class="material-symbols-outlined">home</span>Início</a>
+        <a href="clientes.html"><span class="material-symbols-outlined">group</span>Clientes</a>
+        <a href="pedidos.html"><span class="material-symbols-outlined">order_approve</span>Pedidos</a>
+        <a href="produtos.html"><span class="material-symbols-outlined">shopping_basket</span>Produtos</a>
+        <a href="consultas.html" class="ativo"><span class="material-symbols-outlined">area_chart</span>Consultas</a>
+      </nav>
+    </div>
+
+    <div class="conteudo">
+      <header>
+        <h1>Painel de Consultas</h1>
+        <p>Pesquise registros em tempo real e analise relatórios estratégicos.</p>
+      </header>
+
+      <section class="cards">
+        <div class="cardInfo">
+          <span class="material-symbols-outlined">group</span>
+          <h3 id="totalClientes">0</h3>
+          <p>Clientes</p>
+        </div>
+        <div class="cardInfo">
+          <span class="material-symbols-outlined">shopping_basket</span>
+          <h3 id="totalProdutos">0</h3>
+          <p>Produtos</p>
+        </div>
+        <div class="cardInfo">
+          <span class="material-symbols-outlined">order_approve</span>
+          <h3 id="totalPedidos">0</h3>
+          <p>Pedidos</p>
+        </div>
+        <div class="cardInfo">
+          <span class="material-symbols-outlined">payments</span>
+          <h3 id="valorVendas">R$ 0,00</h3>
+          <p>Faturamento</p>
+        </div>
+      </section>
+
+      <section class="linha">
+        <div class="card">
+          <h2 class="titulo">Pesquisar Clientes</h2>
+          <p class="descricao">Consulte as informações básicas dos clientes cadastrados no sistema.</p>
+          <div class="pesquisa">
+            <input type="text" id="pesquisaCliente" placeholder="Digite o nome do cliente..."/>
+             <button id="btnPesquisarCliente"><span class="material-symbols-outlined">search</span>Pesquisar</button>
+          </div>
+          <div class="tabela scroll"> <table>
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>CPF</th>
+                  <th>E-mail</th>
+                  <th>Endereço</th>
+                </tr>
+              </thead>
+              <tbody id="resultadoClientes"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="titulo">Pesquisar Produtos</h2>
+          <p class="descricao">Digite o nome do produto ou a cor para a consulta os produtos disponíveis</p>
+          <div class="pesquisa">
+            <input type="text" id="pesquisaProduto" placeholder="Ex: Belt, Chaveiro, Preta, Azul..." />
+             <button id="btnPesquisarProduto"><span class="material-symbols-outlined">search</span>Pesquisar</button>
+          </div>
+          <div class="tabela scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Produto</th>
+                  <th>Modelo</th>
+                  <th>Cor</th>
+                  <th>Preço</th>
+                  <th>Estoque</th>
+                </tr>
+              </thead>
+              <tbody id="resultadoProdutos"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" style="margin-bottom: 30px;">
+        <h2 class="titulo"> Pedidos por Data</h2>
+        <div class="pesquisa" style="max-width: 400px;">
+          <input type="date" id="dataConsulta"/>
+          <button id="btnPedidos"><span class="material-symbols-outlined">search</span>Consultar</button>
+        </div>
+        <div class="tabela">
+          <table>
+            <thead>
+              <tr>
+                <th>Cliente</th>
+                <th>Data</th>
+                <th>Valor</th>
+              </tr>
+            </thead>
+            <tbody id="resultadoPedidos"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="linha">
+        <div class="card">
+          <h2 class="titulo"> Média de Gastos</h2>
+          <p class="descricao">Acompanhe a média financeira gerada por cliente cadastrado.</p>
+          <button id="btnMedia" style="margin-bottom: 20px;"><span class="material-symbols-outlined">paid</span>Calcular Média</button>
+          <div class="tabela">
+            <table>
+              <thead>
+                <tr>
+                  <th>Cliente</th>
+                  <th>Média</th>
+                </tr>
+              </thead>
+              <tbody id="resultadoMedia"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="titulo">Produtos Nunca Comprados</h2>
+          <p class="descricao">Produtos no catálogo que ainda não possuem movimentação registrada.</p>
+          <button id="btnNuncaComprados" style="margin-bottom: 20px;"><span class="material-symbols-outlined">visibility</span>Visualizar Lista</button>
+          
+          <div class="tabela scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Produto</th>
+                  <th>Modelo</th> 
+                  <th>Cor</th>
+                  <th>Categoria</th>
+                  <th>Preço Base</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="resultadoNuncaComprados"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script src="js/consultas.js"></script>
+  </body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sense Belts | Clientes</title>
+    <link rel="stylesheet" href="css/clientes.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <script type="module">//supabase
+      import { createClient } from "https://esm.sh/@supabase/supabase-js";
+      const supabaseUrl = "https://qtvsxbynddktnqiubelh.supabase.co";
+      const supabaseKey = "sb_publishable_D4q0NGJ69Iy94luhTagZQA_lk1mWTQT";
+      window.supabase = createClient(supabaseUrl, supabaseKey);
+    </script>
+  </head>
+
+  <body>
+    <div class="menu">
+      <div class="logo">
+        <img src="image/logo.png" alt="logo da sense belts" />
+        <p>Sistema de Vendas</p>
+      </div>
+      <nav>
+        <a href="index.html"><span class="material-symbols-outlined">home</span>Início</a>
+        <a href="clientes.html" class="ativo"><span class="material-symbols-outlined">group</span>Clientes</a>
+        <a href="pedidos.html"><span class="material-symbols-outlined">order_approve</span>Pedidos</a>
+        <a href="produtos.html"><span class="material-symbols-outlined">shopping_basket</span>Produtos</a>
+        <a href="consultas.html"><span class="material-symbols-outlined">area_chart</span>Consultas</a>
+      </nav>
+    </div>
+
+    <div class="conteudo">
+      <header>
+        <h1>Clientes</h1>
+      </header>
+
+      <div class="card">
+        <h2>Novo Cliente</h2>
+        <div class="grid">
+          <div>
+            <label>Nome</label>
+            <input id="nome" placeholder="ex: Cebolinha da Silva"/>
+          </div>
+          <div>
+            <label>CPF</label>
+            <input id="cpf" placeholder="000.000.000-00"/>
+          </div>
+          <div>
+            <label>Email</label>
+            <input id="email" placeholder=" ex: cebolinha.donodarua@gmail.com"/>
+          </div>
+          <div>
+            <label>Rua</label>
+            <input id="rua" placeholder="ex: rua Limoeiro"/>
+          </div>
+          <div>
+            <label>Numero</label>
+            <input id="numero" placeholder="ex: 24"/>
+          </div>
+          <div>
+            <label>Complemento</label>
+            <input id="complemento" placeholder="ex: casa x - em frente...">
+          </div>
+          <div>
+            <label>Bairro</label>
+            <input id="bairro" placeholder="ex: Limoeiro"/>
+          </div>
+          <div>
+            <label>Cidade</label>
+            <input id="cidade" placeholder="ex: Arujá"/>
+          </div>
+          <div>
+            <label>Estado</label>
+            <input id="estado" placeholder="ex: São Paulo"/>
+          </div>
+          <div>
+            <label>CEP</label>
+            <input id="cep" placeholder="00000-000"/>
+          </div>
+          <div>
+            <label>&nbsp;</label>
+            <button id="salvar">Salvar Cliente</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="cardTabela">
+        <h2>Clientes Cadastrados</h2>
+        <div class="clientesCadastrados">
+            <table>
+            <thead>
+                <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Email</th>
+                <th class="endereco">Endereço</th>
+                <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="listaClientes"></tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/clientes.js"></script>
+  </body>
+</html>

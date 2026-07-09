@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sense Belts | Início</title>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
+    <script type="module">//supabase
+      import { createClient } from "https://esm.sh/@supabase/supabase-js";
+      const supabaseUrl = "https://qtvsxbynddktnqiubelh.supabase.co";
+      const supabaseKey = "sb_publishable_D4q0NGJ69Iy94luhTagZQA_lk1mWTQT";
+      window.supabase = createClient(supabaseUrl, supabaseKey);
+    </script>
+  </head>
+
+  <body>
+    <div class="menu">
+      <div class="logo">
+        <img src="image/logo.png" alt="logo da sense belts" />
+        <p>Sistema de Vendas</p>
+      </div>
+      <nav>
+        <a href="index.html" class="ativo"><span class="material-symbols-outlined">home</span>Início</a>
+        <a href="clientes.html"><span class="material-symbols-outlined">group</span>Clientes</a>
+        <a href="pedidos.html"><span class="material-symbols-outlined">order_approve</span>Pedidos</a>
+        <a href="produtos.html"><span class="material-symbols-outlined">shopping_basket</span>Produtos</a>
+        <a href="consultas.html"><span class="material-symbols-outlined">area_chart</span>Consultas</a>
+      </nav>
+    </div>
+
+    <div class="conteudo">
+        <header>
+        <h1>Bem-vindo ao sistema!</h1>
+        <p style="color: #666; margin-top: 5px;">Aqui está o resumo do seu sistema de vendas hoje.</p><br>
+      </header>
+
+      <div class="card">
+        <div class="cardCard">
+          <span class="material-symbols-outlined icone" style="color: #1d3557;">group</span>
+          <div>
+            <h3>Clientes</h3>
+            <p>Gerencie seus contatos</p>
+            <a href="clientes.html" class="btn-atalho">Acessar</a>
+          </div>    
+        </div>
+
+        <div class="cardCard">
+          <span class="material-symbols-outlined icone" style="color: #d62828;">order_approve</span>
+          <div>
+            <h3>Pedidos</h3>
+            <p>Controle as vendas</p>
+            <a href="pedidos.html" class="btn-atalho">Acessar</a>
+          </div>
+        </div>
+
+        <div class="cardCard">
+          <span class="material-symbols-outlined icone" style="color: #f5b041;">shopping_basket</span>
+          <div>
+            <h3>Produtos</h3>
+            <p>Estoque e preços</p>
+            <a href="produtos.html" class="btn-atalho">Acessar</a>
+          </div>
+        </div>
+
+        <div class="cardCard">
+          <span class="material-symbols-outlined icone" style="color: #2b9348;">area_chart</span>
+          <div>
+            <h3>Consultas</h3>
+            <p>Relatórios gerenciais</p>
+            <a href="consultas.html" class="btn-atalho">Acessar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="acessoRapido">
+        <h2>Acesso Rápido</h2>
+        <div class="botoes-container">
+          <a href="clientes.html" class="btn-rapido btn-cliente">
+            <span class="material-symbols-outlined">person_add</span>
+            Cadastrar Cliente
+          </a>
+          <a href="pedidos.html" class="btn-rapido btn-pedido">
+            <span class="material-symbols-outlined">add_shopping_cart</span>
+            Criar Novo Pedido
+          </a>
+          <a href="produtos.html" class="btn-rapido btn-produto">
+            <span class="material-symbols-outlined">inventory_2</span>
+            Catálogo de Produto
+          </a>
+          <a href="consultas.html" class="btn-rapido btn-consulta">
+            <span class="material-symbols-outlined">analytics</span>
+            Painel de Relatórios
+          </a>
+        </div>
+      </div>
+    
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
