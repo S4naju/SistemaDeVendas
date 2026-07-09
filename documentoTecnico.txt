@@ -1,0 +1,221 @@
+-- DOCUMENTO TÉCNICO - Sistema de Vendas Sense Belts
+
+1.Contexto da Solução  
+    O Sistema de Controle de Vendas da Sense Belts é uma aplicação web desenvolvida para gerenciar o processo de vendas da empresa, permitindo o cadastro, listagem, edição e exclusão de clientes, produtos e vendas. O sistema também possibilita realizar consultas administrativas sobre os produtos comercializados, clientes cadastrados e histórico de vendas.
+
+    O objetivo da solução é facilitar o controle das vendas da Sense Belts, centralizando as informações em um banco de dados relacional e demonstrando a integração entre uma aplicação web e um banco de dados, aplicando os conceitos e técnicas estudados na disciplina de Banco de Dados.
+
+2.Tecnologias Usadas
+    No front-end:
+        - HTML5
+        - CSS3
+        - JavaScript
+    No Banco de Dados:
+        - SupaBase
+        - PosterSQL
+        - SQL
+
+3.Modelo Lógico 
+    A base do nosso banco de dados possui quatro tabelas principais:
+        - clientes
+        - produtos
+        - pedidos
+        - item_pedido
+
+4.Estrutura das tabelas
+    - Tabela de Clientes:
+
+| Campo       | Tipo         | Restrição            |
+| ------------| ------------ | -------------------- |
+| cod_cliente | integer      | Primary Key, Identity|
+| nome        | varchar(200) | Not Null             |
+| cpf         | varchar(14)  | Not Null, Unique     |
+| email       | varchar(100) | Not Null             |
+| endereco    | varchar(200) | Not Null             |
+
+    - Tabela de Produtos:
+
+| Campo           | Tipo          | Restrição             |
+| ----------------| ------------- | --------------------- |
+| cod_produto     | integer       | Primary Key, Identity |
+| nome            | varchar(100)  | Not Null              |
+| preco_unitario  | decimal(10,2) | Not Null              |
+| personalizado   | boolean       | Permite Null          |
+| modalidade      | varchar(50)   | Not Null              |
+| modelo          | varchar(50)   | Permite Null          |
+| cor             | varchar(30)   | Permite Null          |
+
+    - Tabela de Pedidos:
+
+| Campo             | Tipo          | Restrição                                     |
+| ----------------- | ------------- | --------------------------------------------- |
+| id_pedido         | integer       | Primary Key, Serial                           |
+| cod_cliente       | integer       | Foreign Key → clientes(cod_cliente), Restrict |
+| cod_produto       | integer       | Foreign Key → produtos(cod_produto)           |
+| data              | date          | Default Current_Date                          |
+| forma_pagamento   | varchar(50)   | Permite Null                                  |
+| total             | decimal(10,2) | Default 0.00                                  |
+
+    - Tabela de itens_pedidos
+
+| Campo               | Tipo          | Restrição                              |
+| ------------------- | ------------- | -------------------------------------- |
+| id_item             | integer       | Primary Key, Serial                    |
+| id_pedido           | integer       | Foreign Key → pedidos(id_pedido), Cascade |
+| produto_descricao   | text          | Permite Null                           |
+| quantidade          | integer       | Permite Null                           |
+| preco_unitario      | decimal(10,2) | Permite Null                           |
+| subtotal            | decimal(10,2) | Permite Null                           |
+| personalizado       | boolean       | Permite Null                           |
+| nome_bordado        | varchar(50)   | Permite Null                           |
+
+5.Relacionamentos
+    - Clientes 1:N Pedidos
+        - Um cliente pode realizar vários pedidos cadastrados
+        - Chave estrangeira: pedidos.cod_cliente 
+        - Referência: clientes.cod_cliente
+        - Regra de atualização: ON UPDATE NO ACTION (padrão do banco)
+        - Regra de exclusão: ON DELETE RESTRICT
+        - A regra RESTRICT impede a exclusão de um cliente que já possui pedidos associados.
+    
+    - Produtos 1:N Pedidos
+        - Um produto pode estar presente em vários pedidos cadastrados
+        - Chave estrangeira: pedidos.cod_produto
+        - Referência: produtos.cod_produto
+        - Regra de atualização: ON UPDATE NO ACTION (padrão do banco)
+        - Regra de exclusão: ON DELETE NO ACTION (padrão do banco)
+        - A regra padrão do banco impede a exclusão de um produto que já possui pedidos associados.
+
+    - Pedidos 1:N Itens_Pedido
+        - Um pedido pode conter vários itens de pedido cadastrados
+        - Chave estrangeira: itens_pedido.id_pedido
+        - Referência: pedidos.id_pedido
+        - Regra de atualização: ON UPDATE NO ACTION (padrão do banco)
+        - Regra de exclusão: ON DELETE CASCADE
+        - A regra CASCADE garante que, se um pedido for excluído, todos os itens associados a ele serão excluídos automaticamente.
+
+6. Regras de Integridade
+    O banco de dados utiliza as seguintes restrições:
+        - PRIMARY KEY;
+        - FOREIGN KEY;
+        - NOT NULL;
+        - UNIQUE;
+        - DEFAULT;
+        - ON DELETE RESTRICT;
+        - ON DELETE CASCADE.
+
+    Exemplos:   
+        - O código do cliente é gerado automaticamente e identifica cada cliente de forma única.    
+        - O CPF de cada cliente é único, não permitindo cadastros duplicados.
+        - Os campos nome, CPF, e-mail e endereço do cliente são obrigatórios.
+        - Os campos nome, preço unitário e modalidade do produto são obrigatórios.
+        - Cada pedido deve estar associado a um cliente cadastrado.
+        - Cada pedido deve estar associado a um produto cadastrado.
+        - Ao excluir um cliente que possui pedidos cadastrados, a exclusão é bloqueada (ON DELETE RESTRICT).
+        - Ao excluir um pedido, todos os seus itens são excluídos automaticamente (ON DELETE CASCADE).
+        - A data do pedido recebe automaticamente a data atual caso não seja informada.
+        - O valor total do pedido é inicializado com **0,00** caso nenhum valor seja informado.
+
+7. Funcionalidades CRUD 
+    A aplicação implementa operações CRUD completas para as principais entidades do sistema de vendas:
+        - cliente
+        - pedidos
+        - itens_pedidos
+
+    - CRUD de Clientes -
+        Funcionalidades:
+            - Cadastrar clientes
+            - Listar clientes cadastrados
+            - Editar informações dos clientes
+            - Excluir clientes
+    
+    - CRUD de Produtos -
+        Funcionalidades:  
+            - Cadastrar produtos disponíveis para venda
+            - Listar produtos cadastrados
+            - Editar informações dos produtos
+            - Excluir produtos
+    
+    - CRUD de Pedidos -
+        Funcionalidades:
+            - Registrar novos pedidos de clientes
+            - Listar pedidos realizados
+            - Editar informações dos pedidos
+            - Excluir pedidos
+    
+    - CRUD de Itens do Pedido -
+        Funcionalidades:
+            - Adicionar produtos aos pedidos
+            - Visualizar itens vinculados a cada pedido
+            - Alterar quantidade e informações dos itens
+            - Remover itens dos pedidos
+
+8. Consultas Implementadas na Aplicação
+    - Consultas de uma tabela:
+        -   Buscar produto pelo nome
+        -   Filtrar produtos por cor
+        -   Filtrar produtos por modalidade
+        -   Filtrar produtos por modelo
+        -   Filtrar clientes por CPF ou Email
+        -   Buscar pedidos por intervalo de data
+    
+    - Consultas com mais de uma tabela:
+        - Pedidos por cliente -> Listar as compras de um cliente específico (pedidos e clientes)
+        - Sessão/Lista de itens de um pedido -> Mostrar o carrinho/detalhes de um pedido realizado (itens_pedido e pedido)
+        - Produtos nunca comprados por nenhum clientes -> 
+        - faturamento total por cliente -> Quanto cada cliente já gastou no site (pedidos e clientes)
+        - Itens de um pedido específico
+        - Produtos mais vendidos (maior quantidade total nos itens)
+        - Faturamento total por cliente
+        - Valor total gasto por pedido (soma dos subtotais dos itens)
+        - Produtos personalizados com nome bordado por pedido
+        - Histórico de compras detalhado (Cliente ➔ Pedido ➔ Itens do Pedido)
+
+9. Scripts SQL  
+    A pasta de sql reúne os arquivos SQL responsáveis pela estruturação, inserção, gerenciamento e realização de consultas no banco de dados do sistema de controle de vendas da Sense Belts.
+
+|    Arquivos    |                                                  Finalidades                                                     |
+| -------------- | ---------------------------------------------------------------------------------------------------------------- |
+| tables.sql     | Criação das tabelas clientes, produtos, pedidos e itens_pedido, incluindo chaves primárias e chaves estrangeiras |
+| insertInto.sql | Criação das tabelas clientes, produtos, pedidos e itens_pedido, incluindo chaves primárias e chaves estrangeiras |
+| consultas.sql  | Criação de consultas específicas utilizando os dados cadastrados, como produtos que nunca foram comprados        |
+| filtro.sql     | Consulta utilizando filtros, agregações e agrupamentos entre tabelas                                             |
+| anyAll.sql     | Subconsulta utilizando os operadores de comparação ANY e ALL                                                     |
+| exists.sql     | Subconsulta utilizando o operador EXISTS para verificar a existência de registros relacionados                   |
+| drop.sql       | Exclusão das tabelas e remoção da estrutura do banco de dados                                                    |
+
+10. Exemplos de Consultas dos scripts
+    - Consultas de produtos nunca comprados com NOT IN
+      O arquivo consultas.sql apresenta uma consulta que identifica produtos cadastrados no sistema que ainda não possuem registros de compra
+      A consulta utiliza:
+        -   VIEW
+        -   NOT IN
+        -   SELECT
+    Exemplo de aplicação: listar produtos disponíveis no catálogo que ainda não foram vendidos
+
+    - Consultas com filtros e agregações
+        O arquivo filtro.sql realiza uma consulta para identificar clientes que possuem um valor total gasto superior a determinado limite
+        A consulta utiliza:
+            -   INNER JOIN
+            -   WHERE
+            -   GROUP BY
+            -   HAVING
+            -   COUNT
+            -   SUM
+        Exemplo de aplicação:   mostrar clientes que já realizaram pedidos com valor total superior a R$ 140,00, exibindo a quantidade de pedidos e o total gasto
+
+    - Subconsulta com EXISTS
+        O arquivo exists.sql utiliza o operador EXISTS para verificar a existência de registros relacionados entre tabelas.
+        Exemplo de aplicação: listar clientes que possuem pelo menos um pedido cadastrado no sistema
+        Utiliza:  EXISTS e subconsulta correlacionada
+
+11. Integração com Supabase
+    A conexão com o banco de dados é realizada diretamente nos arquivos HTML através da biblioteca supabase-js, utilizando o script de configuração:
+<script>
+    import { createClient } from "https://esm.sh/@supabase/supabase-js"; 
+    const supabaseUrl = "URL_DO_SUPABASE"; 
+    const supabaseKey = "CHAVE_DO_SUPABASE"; 
+    window.supabase = createClient(supabaseUrl, supabaseKey);
+</script>
+    
+    Após a configuração, os arquivos JavaScript de cada página utilizam o objeto window.supabase para realizar operações no banco de dados, como cadastro, consulta, atualização e exclusão de registros das tabelas do sistema.
